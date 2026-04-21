@@ -1,6 +1,7 @@
 import { DayPicker } from "react-day-picker";
 import { useState, useRef, useEffect } from "react";
 import { enGB } from "react-day-picker/locale";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
 const DatePicker = ({ selected, onSelect }) => {
   const [open, setOpen] = useState(false);
@@ -18,13 +19,18 @@ const DatePicker = ({ selected, onSelect }) => {
 
   return (
     <div ref={ref}>
-      <input
-        readOnly
-        placeholder="Booking Date*"
-        value={formatted}
+      <div
         onClick={() => setOpen((prev) => !prev)}
-        className="bg-bg-lighter text-text-secondary hover:text6-text-dark w-full cursor-pointer rounded-xl px-4 py-3 outline-none"
-      />
+        className="bg-bg-lighter flex cursor-pointer items-center rounded-xl px-4 py-3"
+      >
+        <input
+          readOnly
+          placeholder="Booking Date*"
+          value={formatted}
+          className="text-text-secondary w-full cursor-pointer bg-transparent outline-none"
+        />
+        <CalendarTodayIcon className="text-text-secondary shrink-0" style={{ fontSize: 18 }} />
+      </div>
 
       {open && (
         <div className="absolute z-10 mt-1 rounded-xl bg-white shadow-lg">
