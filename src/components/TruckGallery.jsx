@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 const TruckGallery = ({ gallery = [] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -7,14 +9,24 @@ const TruckGallery = ({ gallery = [] }) => {
 
   return (
     <div className="flex flex-col gap-3">
-      {/*Main image*/}
-      <div className="h-72 w-120 overflow-hidden rounded-2xl sm:h-96">
-        <img
-          src={gallery[activeIndex].original}
-          alt="main"
-          className="h-full w-full object-cover"
-        />
-      </div>
+      <PhotoProvider>
+        {/*Main image*/}
+        {gallery.map((img, i) => (
+          <PhotoView key={i} src={img.original}>
+            {i === activeIndex ? (
+              <div className="cusror-pointer overflow-hidden rounded-2xl">
+                <img
+                  src={img.original}
+                  alt="main"
+                  className="h-48 w-full cursor-pointer object-cover sm:h-90 md:h-72 xl:h-90"
+                />
+              </div>
+            ) : (
+              <span style={{ display: "none" }} />
+            )}
+          </PhotoView>
+        ))}
+      </PhotoProvider>
 
       {/*Thumbnail section */}
       {gallery.length > 1 && (
@@ -23,7 +35,7 @@ const TruckGallery = ({ gallery = [] }) => {
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
-              className={`h-20 w-28 shrink-0 overflow-hidden rounded-xl border-2 transition-opacity ${i === activeIndex ? "border-primary-light" : "border-transparent opacity-60 hover:opacity-90"}`}
+              className={`h-20 w-25 shrink-0 overflow-hidden rounded-xl border-2 transition-opacity sm:w-30 ${i === activeIndex ? "border-primary-light" : "border-transparent opacity-60 hover:opacity-90"}`}
             >
               <img
                 src={img.thumb}

@@ -15,7 +15,7 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="border-border flex flex-col gap-3 rounded-2xl border p-10">
+    <div className="border-border mt-12 flex flex-col justify-center gap-3 rounded-2xl border p-10">
       <h2 className="text-text-dark text-xl font-semibold">
         Book your campervan now
       </h2>

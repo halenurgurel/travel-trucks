@@ -6,7 +6,7 @@ import Button from "./Button";
 const AdDetail = ({ truck }) => {
   console.log(truck.form);
   return (
-    <div className="bg-bg-lighter flex flex-col gap-4 rounded-3xl p-4 sm:flex-row md:flex-col lg:flex-row">
+    <div className="bg-bg-lighter flex flex-col gap-6 rounded-3xl p-4 sm:flex-row md:flex-col lg:flex-row">
       <img
         src={truck.gallery[0].thumb}
         className="h-48 w-full shrink-0 rounded-2xl object-cover sm:h-60 sm:w-55 md:w-full lg:h-60 lg:w-55"
@@ -14,7 +14,7 @@ const AdDetail = ({ truck }) => {
 
       <div className="flex min-w-0 flex-col gap-2">
         {/*Name and Price*/}
-        <div className="flex flex-row justify-between gap-4">
+        <div className="flex flex-row justify-between gap-4 sm:flex-col lg:flex-row">
           <h2 className="text-text-dark min-w-0 text-2xl font-semibold">
             {truck.name}
           </h2>
@@ -25,18 +25,20 @@ const AdDetail = ({ truck }) => {
 
         {/*Review and location*/}
         <div className="flex flex-row items-center gap-5">
-          <p className="text-text-dark">
-            <StarRateRoundedIcon className="text-accent" />
+          <p className="text-text-dark flex items-center">
+            <StarRateRoundedIcon className="text-accent -mt-1" />
             {truck.rating} ({truck.reviews.length} reviews)
           </p>
-          <p className="text-text-dark">
+          <p className="text-text-dark flex items-center gap-1">
             <MapOutlinedIcon />
             {truck.location}
           </p>
         </div>
 
         {/*description*/}
-        <p className="text-text-medium line-clamp-1">{truck.description}</p>
+        <p className="text-text-medium ml-2 line-clamp-1">
+          {truck.description}
+        </p>
 
         {/*badges*/}
         <div className="flex flex-row flex-wrap gap-2">

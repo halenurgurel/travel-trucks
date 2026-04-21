@@ -24,13 +24,13 @@ const AdDetailsPage = () => {
 
   return (
     <div className="flex flex-col gap-7 p-4">
-      <div className="bg- flex flex-row justify-between gap-4">
+      <div className="flex flex-col justify-between gap-4 md:flex-row">
         <TruckGallery gallery={truck.gallery} />
         <VehicleDetails truck={truck} />
       </div>
 
       {/*Reviews and Booking Form*/}
-      <div className="flex flex-row justify-between gap-5">
+      <div className="flex flex-col justify-between gap-5 md:flex-row">
         <Reviews truck={truck} />
         <BookingForm />
       </div>

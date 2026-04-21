@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchTrucks } from "../redux/truckThunks";
 import { selectItems, selectLoading } from "../redux/truckSelectors";
 import Filter from "../components/Filter";
-import AdDetail from "../components/CatalogDetail";
+import CatalogDetail from "../components/CatalogDetail";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
@@ -49,7 +49,7 @@ const CatalogPage = () => {
       <div className="flex flex-col gap-6">
         {loading && <Loader />}
         {items.slice(0, visible).map((truck) => (
-          <AdDetail key={truck.id} truck={truck} />
+          <CatalogDetail key={truck.id} truck={truck} />
         ))}
         {visible < items.length && (
           <div className="flex items-center justify-center">

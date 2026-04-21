@@ -2,7 +2,7 @@ import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
 const Reviews = ({ truck }) => {
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       <h2 className="text-text-dark text-2xl font-semibold">Reviews</h2>
       <div className="flex flex-col gap-5">
         {truck.reviews.map((review) => (
@@ -14,10 +14,14 @@ const Reviews = ({ truck }) => {
 
               <div className="flex flex-col">
                 <p className="text-text-dark">{review.reviewer_name}</p>
-                <div className="flex">
-                  {Array.from({ length: review.reviewer_rating }, (_, i) => (
-                    <StarRateRoundedIcon key={i} className="text-accent" />
-                  ))}
+                <div className="-ml-2 flex items-center">
+                  {Array.from({ length: 5 }, (_, i) =>
+                    i < review.reviewer_rating ? (
+                      <StarRateRoundedIcon key={i} className="text-accent" />
+                    ) : (
+                      <StarRateRoundedIcon key={i} className="text-border" />
+                    ),
+                  )}
                 </div>
               </div>
             </div>

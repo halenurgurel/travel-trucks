@@ -17,11 +17,11 @@ const VehicleDetails = ({ truck }) => {
 
         {/*review and loaction*/}
         <div className="flex flex-row items-center gap-5">
-          <p className="text-text-dark">
-            <StarRateRoundedIcon className="text-accent" />
+          <p className="text-text-dark flex items-center gap-1">
+            <StarRateRoundedIcon className="text-accent -mt-1" />
             {truck.rating} ({truck.reviews.length} reviews)
           </p>
-          <p className="text-text-dark">
+          <p className="text-text-dark flex items-center gap-1">
             <MapOutlinedIcon />
             {truck.location}
           </p>
