@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import Layout from "./layout/Layout.jsx";
 import CatalogPage from "./pages/CatalogPage.jsx";
-import AdDetailsPage from "./pages/AdDetailsPage.jsx";
+import AdDetailsPage from "./pages/CatalogDetailsPage.jsx";
 
 const App = () => {
   return (

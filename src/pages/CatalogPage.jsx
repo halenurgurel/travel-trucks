@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchTrucks } from "../redux/truckThunks";
 import { selectItems, selectLoading } from "../redux/truckSelectors";
 import Filter from "../components/Filter";
-import AdDetail from "../components/AdDetail";
+import AdDetail from "../components/CatalogDetail";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
