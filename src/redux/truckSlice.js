@@ -1,7 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchTrucks, fetchTruckById } from "./truckThunks";
 
-const initialFilters = { location: "", form: "", engine: "", transmission: "" };
+const initialFilters = {
+  location: "",
+  form: "",
+  engine: "",
+  transmission: "",
+  features: [],
+};
 
 const initialState = {
   items: [],
@@ -9,6 +15,7 @@ const initialState = {
   loading: false,
   error: null,
   filters: initialFilters,
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
 };
 
 const truckSlice = createSlice({
@@ -20,6 +27,14 @@ const truckSlice = createSlice({
     },
     clearFilters: (state) => {
       state.filters = initialFilters;
+    },
+    toggleFavorite: (state, action) => {
+      const id = action.payload;
+      const exists = state.favorites.includes(id);
+      state.favorites = exists
+        ? state.favorites.filter((f) => f !== id)
+        : [...state.favorites, id];
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
   },
   extraReducers: (builder) => {
@@ -49,5 +64,5 @@ const truckSlice = createSlice({
   },
 });
 
-export const { setFilters, clearFilters } = truckSlice.actions;
+export const { setFilters, clearFilters, toggleFavorite } = truckSlice.actions;
 export default truckSlice.reducer;

@@ -1,6 +1,6 @@
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { featureIcons, formLabels } from "../constants/features";
+import FavoriteButton from "./FavoriteButton";
+import TruckMeta from "./TruckMeta";
 
 const VehicleDetails = ({ truck }) => {
   const badges = Object.entries(featureIcons).filter(([key]) => {
@@ -12,20 +12,18 @@ const VehicleDetails = ({ truck }) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="bg-bg-lighter flex flex-col gap-4 rounded-2xl p-4">
-        {/*truck name*/}
-        <h2 className="text-text-dark text-2xl font-semibold">{truck.name}</h2>
-
-        {/*review and loaction*/}
-        <div className="flex flex-row items-center gap-5">
-          <p className="text-text-dark flex items-center gap-1">
-            <StarRateRoundedIcon className="text-accent -mt-1" />
-            {truck.rating} ({truck.reviews.length} reviews)
-          </p>
-          <p className="text-text-dark flex items-center gap-1">
-            <MapOutlinedIcon />
-            {truck.location}
-          </p>
+        <div className="flex flex-row gap-5">
+          <h2 className="text-text-dark text-2xl font-semibold">
+            {truck.name}
+          </h2>
+          <FavoriteButton truckId={truck.id} className="-mt-2" />
         </div>
+
+        <TruckMeta
+          rating={truck.rating}
+          reviewCount={truck.reviews.length}
+          location={truck.location}
+        />
 
         <p className="text-text-dark shrink-0 text-2xl font-semibold">
           €{truck.price.toFixed(2)}
@@ -38,7 +36,6 @@ const VehicleDetails = ({ truck }) => {
           Vehicle Details
         </h2>
 
-        {/*Badges*/}
         <div className="flex flex-wrap gap-2">
           {badges.map(([key, { icon }]) => {
             const value = truck[key];
@@ -67,10 +64,7 @@ const VehicleDetails = ({ truck }) => {
             { label: "Width", value: truck.width },
             { label: "Height", value: truck.height },
             { label: "Tank", value: truck.tank },
-            {
-              label: "Consumption",
-              value: truck.consumption,
-            },
+            { label: "Consumption", value: truck.consumption },
           ].map(({ label, value }) => (
             <div key={label} className="flex flex-row justify-between">
               <p>{label}</p>

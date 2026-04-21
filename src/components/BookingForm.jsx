@@ -1,12 +1,14 @@
 import Input from "./Input";
 import Button from "./Button";
 import { useState } from "react";
+import { toast } from "sonner";
+import DatePicker from "./DatePicker";
 
 const BookingForm = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    date: "",
+    date: null,
     comment: "",
   });
 
@@ -14,8 +16,21 @@ const BookingForm = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+    toast.success("Booking confirmed! We will contact you soon.");
+    setForm({ name: "", email: "", date: null, comment: "" });
+  };
+
   return (
-    <div className="border-border mt-12 flex flex-col justify-center gap-3 rounded-2xl border p-10">
+    <form
+      onSubmit={handleSubmit}
+      className="border-border mt-12 flex flex-col justify-center gap-3 rounded-2xl border p-10"
+    >
       <h2 className="text-text-dark text-xl font-semibold">
         Book your campervan now
       </h2>
@@ -35,8 +50,12 @@ const BookingForm = () => {
         value={form.email}
         onChange={handleChange}
       />
-      <Button>Send</Button>
-    </div>
+      <DatePicker
+        selected={form.date}
+        onSelect={(date) => setForm({ ...form, date })}
+      />
+      <Button type="submit">Send</Button>
+    </form>
   );
 };
 export default BookingForm;

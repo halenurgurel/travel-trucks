@@ -6,7 +6,7 @@ const Reviews = ({ truck }) => {
       <h2 className="text-text-dark text-2xl font-semibold">Reviews</h2>
       <div className="flex flex-col gap-5">
         {truck.reviews.map((review) => (
-          <div className="bg-bg-light flex flex-col gap-4 rounded-2xl p-4">
+          <div key={review.reviewer_name} className="bg-bg-light flex flex-col gap-4 rounded-2xl p-4">
             <div className="flex flex-row gap-5">
               <p className="text-primary-light flex h-16 w-16 items-center justify-center rounded-full bg-white text-2xl font-semibold">
                 {review.reviewer_name[0]}

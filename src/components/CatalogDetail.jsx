@@ -1,10 +1,9 @@
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { featureIcons, formLabels } from "../constants/features";
 import Button from "./Button";
+import FavoriteButton from "./FavoriteButton";
+import TruckMeta from "./TruckMeta";
 
-const AdDetail = ({ truck }) => {
-  console.log(truck.form);
+const CatalogDetail = ({ truck }) => {
   return (
     <div className="bg-bg-lighter flex flex-col gap-6 rounded-3xl p-4 sm:flex-row md:flex-col lg:flex-row">
       <img
@@ -13,43 +12,35 @@ const AdDetail = ({ truck }) => {
       />
 
       <div className="flex min-w-0 flex-col gap-2">
-        {/*Name and Price*/}
         <div className="flex flex-row justify-between gap-4 sm:flex-col lg:flex-row">
           <h2 className="text-text-dark min-w-0 text-2xl font-semibold">
             {truck.name}
           </h2>
-          <p className="text-text-dark shrink-0 text-2xl font-semibold">
-            €{truck.price.toFixed(2)}
-          </p>
+
+          <div className="flex flex-row items-start gap-5">
+            <p className="text-text-dark shrink-0 text-2xl font-semibold">
+              €{truck.price.toFixed(2)}
+            </p>
+            <FavoriteButton truckId={truck.id} />
+          </div>
         </div>
 
-        {/*Review and location*/}
-        <div className="flex flex-row items-center gap-5">
-          <p className="text-text-dark flex items-center">
-            <StarRateRoundedIcon className="text-accent -mt-1" />
-            {truck.rating} ({truck.reviews.length} reviews)
-          </p>
-          <p className="text-text-dark flex items-center gap-1">
-            <MapOutlinedIcon />
-            {truck.location}
-          </p>
-        </div>
+        <TruckMeta
+          rating={truck.rating}
+          reviewCount={truck.reviews.length}
+          location={truck.location}
+        />
 
-        {/*description*/}
         <p className="text-text-medium ml-2 line-clamp-1">
           {truck.description}
         </p>
 
-        {/*badges*/}
         <div className="flex flex-row flex-wrap gap-2">
           {["engine", "transmission", "form"].map((key) => {
             const value = truck[key];
             const feature = featureIcons[key];
-
             if (!value || !feature) return null;
-
             const label = key === "form" ? (formLabels[value] ?? value) : value;
-
             return (
               <span
                 key={key}
@@ -74,4 +65,4 @@ const AdDetail = ({ truck }) => {
     </div>
   );
 };
-export default AdDetail;
+export default CatalogDetail;
