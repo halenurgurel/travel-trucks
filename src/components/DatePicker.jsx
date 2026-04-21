@@ -17,7 +17,7 @@ const DatePicker = ({ selected, onSelect }) => {
   const formatted = selected ? selected.toLocaleDateString("en-GB") : "";
 
   return (
-    <div>
+    <div ref={ref}>
       <input
         readOnly
         placeholder="Booking Date*"
